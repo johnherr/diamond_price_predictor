@@ -61,18 +61,20 @@ Before passing data to my model, I also transformed the categorical data into nu
 ### Considerations on Feature Engineering
 As discussed above, I linearized the relationship between the sale price and diamond size (x, y, and z dimensions) by predicting based on the natural log of the price. Doing this transformation resulted in a minor reduction of the mean absolute error (MEA), which I used as my evaluation metric.
 
-I also played around with generating a few additional features, but I was unable to improve my model performance by using any of these metrics 
+I also played around with generating a few additional features, but I was unable to improve my model performance by using any of these metrics.  Here are a few things that I tried using.
  - **Bounding Volume**: x * y * z - getting at the carat size 
  - **Surface Area** x * y - How big the diamond appears head on
  - **CCC** (cut * clarity * color)^2 - getting at the compounding nature of these three features
  - **Removing x, y, z** when this information is replicated elsewhere (e.g. in volume)
  
-If I were to model using Oridinary least squares, my hunch is that feature engineering would be much more impactful, both in the overall accuracy and in in 
+If I were to model using ordinary least squares, my hunch is that feature engineering would be much more impactful by both improving the overall accuracy and improving the interpretability of the coefficients.
  
 
 ## Model <a name="model"></a>
 
-I ended up testing both a Random Forest Regressor and Boosting Regressor.  Unless otherwise, the model in my code defaults to using and `XGBRegressor.`
+I ended up testing both a Random Forest Regressor and Boosting Regressor.  By playing around with the hypter paramters of the Boosting regressor I was able to achieve slightly better results. 
+
+Unless otherwise, the model in my code defaults to using and `XGBRegressor.`
 
 For my evaluation metric, I've decided to focus on reducing the Mean Absolute Error (MAE).  The RMSE would increase the penalty for predictions that differ significantly from the true value. The MAE would be beneficial to know if, e.g., you were in the business of buying and reselling diamonds.  If you wanted to have a longterm strategy for making money doing this, it might be a good idea only to buy diamonds that are at least the MAE below the predicted price that the diamond would sell in your marketplace for.
 
@@ -80,8 +82,9 @@ For my evaluation metric, I've decided to focus on reducing the Mean Absolute Er
 ### Results
 Running the model produces the following evaluation metrics:
 
-`Mean Absolute Error: 278.6
-R^2:  0.98`
+`Mean Absolute Error: $271.0`
+
+`R^2:  0.980`
 
 The R^2 value explains the goodness of fit of the model and how much of the variation is explained by the model.  For a quick first try, this model seems to be working quite well!
 
