@@ -72,9 +72,7 @@ If I were to model using ordinary least squares, my hunch is that feature engine
 
 ## Model <a name="model"></a>
 
-I ended up testing both a Random Forest Regressor and Boosting Regressor.  By playing around with the hypter paramters of the Boosting regressor I was able to achieve slightly better results. 
-
-Unless otherwise, the model in my code defaults to using and `XGBRegressor.`
+I ended up testing both a Random Forest Regressor and Boosting Regressor.  By playing around with the hypter paramters of the Boosting regressor I was able to achieve slightly better results.  Unless specified, the code defaults to using a `XGBRegressor` model.
 
 For my evaluation metric, I've decided to focus on reducing the Mean Absolute Error (MAE).  The RMSE would increase the penalty for predictions that differ significantly from the true value. The MAE would be beneficial to know if, e.g., you were in the business of buying and reselling diamonds.  If you wanted to have a longterm strategy for making money doing this, it might be a good idea only to buy diamonds that are at least the MAE below the predicted price that the diamond would sell in your marketplace for.
 
