@@ -62,10 +62,10 @@ Before passing data to my model, I also transformed the categorical data into nu
 As discussed above, I linearized the relationship between the sale price and diamond size (x, y, and z dimensions) by predicting based on the natural log of the price. Doing this transformation resulted in a minor reduction of the mean absolute error (MEA), which I used as my evaluation metric.
 
 I also played around with generating a few additional features, but I was unable to improve my model performance by using any of these metrics.  Here are a few things that I tried using.
- - **Bounding Volume**: x * y * z - getting at the carat size 
- - **Surface Area** x * y - How big the diamond appears head on
- - **CCC** (cut * clarity * color)^2 - getting at the compounding nature of these three features
- - **Removing x, y, z** when this information is replicated elsewhere (e.g. in volume)
+ - **Bounding Volume**: x * y * z - approximating the carat size 
+ - **Surface Area** x * y - How big the diamond appears when viewed head on
+ - **CCC** (cut * clarity * color)^2 - Looking at the compounding nature of these three features
+ - **Removing x, y, z** - removing these features when this information is replicated elsewhere (e.g. in volume)
  
 If I were to model using ordinary least squares, my hunch is that feature engineering would be much more impactful by both improving the overall accuracy and improving the interpretability of the coefficients.
  
@@ -94,8 +94,8 @@ When using decision trees, you calculate `feature importances` which are indicat
 
 ![](images/feature_importance.png)
 
-### Using Model
-Modes
+### Using the Model
+Modes:
 1. **Train and Test**:
     Use one dataset for training and testing. Testing will be a 20% hold out test set. If no input filepath is given, it will train/test on the provided diamonds.txt dataset.
     
